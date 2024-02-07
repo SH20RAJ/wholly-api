@@ -1,0 +1,44 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <button id="uploadButton">Upload Image</button>
+  <div id="result"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const uploadButton = document.getElementById('uploadButton');
+    const resultDiv = document.getElementById('result');
+
+    uploadButton.addEventListener('click', async () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        return alert('Please select a file');
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await fetch('/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+        resultDiv.innerHTML = `<img src="${data.url}" alt="Uploaded Image">`;
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        resultDiv.textContent = 'Error uploading image';
+      }
+    });
+  </script>
+</body>
+</html>

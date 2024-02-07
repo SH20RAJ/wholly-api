@@ -1,0 +1,17 @@
+{
+  "name": "wholly-api",
+  "version": "1.0.0",
+  "description": "WhollyAPI Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
